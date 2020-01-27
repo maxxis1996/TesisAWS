@@ -1,0 +1,79 @@
+service: aws-sbp-patrones
+provider:
+  name: aws
+  runtime: python3.8
+  memorySize: 1000
+  timeout: 900
+  stage: dev
+  region: us-east-1
+  deploymentBucket:
+    name: mi.aws.sbp.patrones
+
+custom:
+  user: max
+  dynamoDBTableName: 'tablapatrones${self:custom.user}'
+  s3BucketName: 'mi.sbp.awss'
+  pythonRequirements:
+    zip: true
+
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - s3:*
+      Resource: "*"
+    - Effect: Allow
+      Action:
+        - dynamodb:*
+      Resource: "*"
+    - Effect: Allow
+      Action:
+        - lambda:*
+      Resource: "*"
+    - Effect: Allow
+      Action: 
+        - cloudwatch:*
+      Resource: "*"
+
+plugins:
+  - serverless-python-requirements
+
+package:
+  exclude: 
+    - env/**
+
+functions:           
+  patronswsimple:
+    handler: patron1.patronswsimple
+    environment:
+      DYNAMO_TABLE_NAME: ${self:custom.dynamoDBTableName}
+    events:
+      - http:
+          path: swsimple
+          method: post
+          cors: true
+
+  patrontuberiaenvio:
+    handler: patron3-1.patrontuberiaenvio
+    environment:
+      DYNAMO_TABLE_NAME: ${self:custom.dynamoDBTableName}
+    events:
+      - http:
+          path: patrontuberiaenvio
+          method: post
+          cors: true
+
+  patrontuberia:
+    handler: patron3-2.patrontuberia
+    environment:
+      DYNAMO_TABLE_NAME: ${self:custom.dynamoDBTableName}
+      bucketName: ${self:custom.s3BucketName}
+    events:
+      - s3:
+          bucket: ${self:custom.s3BucketName}
+          event: s3:ObjectCreated:Put
+          cors: true
+          rules:
+            - suffix: .csv
+
+resources:
+  - ${file(resources/dynamo-table.yml)}

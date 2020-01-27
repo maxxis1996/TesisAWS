@@ -1,0 +1,102 @@
+service: aws---patrones
+custom:
+  user: max
+  dynamoDBTableName: 'tablepatrones${self:custom.user}'
+  s3BucketName: 'mi.aws'
+  client:
+    bucketName: 'mi.aws.patrones'
+    distributionFolder: client
+    indexDocument: index.html
+    errorDocument: error.html
+  pythonRequirements:
+    zip: true
+
+provider:
+  name: aws
+  runtime: python3.8
+  memorySize: 3008
+  timeout: 900
+  stage: dev
+  region: us-east-1
+  deploymentBucket:
+    name: mi.aws.patrones
+
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "s3:*"
+      Resource: "*"
+    - Effect: Allow
+      Action:
+        - "dynamodb:*"
+      Resource: "*"
+    - Effect: Allow
+      Action:
+        - "lambda:*"
+      Resource: "*"
+
+    - Effect: Allow
+      Action: 
+        - "cloudwatch:*"
+      Resource: "*"
+
+plugins:
+  - serverless-python-requirements
+  - serverless-finch
+
+package:
+  individually: true
+  exclude: 
+    - env/**
+
+functions:           
+  patronswsimple:
+    handler: patron1.patronswsimple
+    environment:
+      DYNAMO_TABLE_NAME: ${self:custom.dynamoDBTableName}
+    events:
+      - http:
+          path: swsimple
+          method: post
+          cors: true
+  
+  patronfanout:
+    handler: patron2.patronfanout
+    environment:
+      DYNAMO_TABLE_NAME: ${self:custom.dynamoDBTableName}
+    events:
+      - http:
+          path: patronfanout
+          method: post
+          cors: true
+  
+  trabajadores:
+    handler: patron2.trabajadores
+    environment:
+      DYNAMO_TABLE_NAME: ${self:custom.dynamoDBTableName}
+  
+  patrontuberiaenvio:
+    handler: patron3-1.patrontuberiaenvio
+    environment:
+      DYNAMO_TABLE_NAME: ${self:custom.dynamoDBTableName}
+    events:
+      - http:
+          path: patrontuberiaenvio
+          method: post
+          cors: true
+
+  patrontuberia:
+    handler: patron3-2.patrontuberia
+    environment:
+      DYNAMO_TABLE_NAME: ${self:custom.dynamoDBTableName}
+      bucketName: ${self:custom.s3BucketName}
+    events:
+      - s3:
+          bucket: ${self:custom.s3BucketName}
+          event: s3:ObjectCreated:Put
+          cors: true
+          rules:
+            - suffix: .csv
+
+resources:
+  - ${file(resources/dynamo-table.yml)}

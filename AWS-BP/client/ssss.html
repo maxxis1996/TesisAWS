@@ -1,0 +1,65 @@
+<html>
+<head>
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.7.16.min.js"></script>
+
+<script>
+AWS.config.update({
+  region: "ca-central-1",
+  accessKeyId: "AKIAID7xxxxxxxxxxxx",
+  secretAccessKey: "kzzeko8xxxxxxxxxxxxx"
+});
+
+var docClient = new AWS.DynamoDB.DocumentClient();
+
+function createItem() {
+  var d = new Date();
+  var n = d.getSeconds();
+    var params = {
+        TableName :"my_iot_burl1",
+        Item:{
+      'signal': 'mytag4',
+      'desc': 'test tag4',
+      'info': {
+        'value':n,
+        'quality': "questionable"
+        }
+    }
+    };
+    docClient.put(params, function(err, data) {
+        if (err) {
+            document.getElementById('textarea').innerHTML = "Unable to add item: " + "\n" + JSON.stringify(err, undefined, 2);
+        } else {
+            document.getElementById('textarea').innerHTML = "PutItem succeeded: " + "\n" + JSON.stringify(params,undefined, 2);
+        }
+    });
+}
+
+function readItem() {
+    var table = "my_iot_burl1";
+    var signal = 'mytag4';
+    var params = {
+        TableName: table,
+        Key:{'signal' : 'mytag4' }
+    };
+    docClient.get(params, function(err, data) {
+        if (err) {
+            document.getElementById('textarea2').innerHTML = "Unable to read item: " + "\n" + JSON.stringify(err, undefined, 2);
+        } else {
+            document.getElementById('textarea2').innerHTML = "GetItem succeeded: " + "\n" + JSON.stringify(data, undefined, 2);
+        }
+    });
+}
+
+</script>
+</head>
+
+<body>
+<input id="createItem" type="button" value="Create Item" onclick="createItem();" />
+<br><br>
+<textarea readonly id= "textarea" style="width:400px; height:300px"></textarea>
+<hr>
+<input id="readItem" type="button" value="Read Item" onclick="readItem();" />
+<br><br>
+<textarea readonly id= "textarea2" style="width:400px; height:300px"></textarea>
+</body>
+</html>

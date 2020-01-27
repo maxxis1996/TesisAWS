@@ -1,0 +1,53 @@
+service: aws-patron--4
+custom:
+  user: max
+  pythonRequirements:
+    zip: true
+  dynamoDBTableName: 'tablapatrones${self:custom.user}'
+provider:
+  name: aws
+  runtime: python3.6
+  memorySize: 3008
+  timeout: 180
+  stage: dev
+  region: us-east-1
+  
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - "dynamodb:*"
+      Resource: "*"
+    - Effect: Allow
+      Action:
+        - "lambda:*"
+      Resource: "*"
+    - Effect: Allow
+      Action: 
+        - "cloudwatch:*"
+      Resource: "*"
+
+plugins:
+  - serverless-python-requirements
+
+package:
+  exclude: 
+    - env/**
+
+functions:
+  patrongrafico:
+    handler: patron4.patrongrafico
+    events:
+      - http:
+          path: patrongrafico
+          method: post
+          cors: true
+  
+  patrongraficoB:
+    handler: patron4B.patrongraficoBOTO
+    environment:
+      DYNAMO_TABLE_NAME: ${self:custom.dynamoDBTableName}
+    events:
+      - http:
+          path: patrongraficoBOTO
+          method: post
+          cors: true

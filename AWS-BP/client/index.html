@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="shortcut icon" href="img/logo.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#ffffff">
+  <link href="css/estilo.css" rel="stylesheet" type="text/css">
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <script src="https://sdk.amazonaws.com/js/aws-sdk-2.7.16.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <title>Patrones Arquitectonicos de Serverless en AWS</title>
+</head>
+
+<body>
+    <div class="navbar">
+        <a class="active" href="#"><i class="fa fa-fw fa-home"></i> Funciones en Amazon</a>
+        <a href="#"><i class="fa fa-fw fa-search"></i> Funciones en Google</a>
+        <a href="#"><i class="fa fa-fw fa-envelope"></i> Funciones en Ibm</a>
+    </div>
+
+  <div id="principal">
+    <header>
+      <div id="logo">
+        <h1 style="text-align:center" class="titulo">Patrones y buenas prácticas en Serverless para AWS</h1>
+      </div>
+    </header>
+    <section id="categorias">
+      <section class="uno">
+        <h2>Patron servicio web simple</h2>
+        <p class="parrafo">
+          El patrón de Servicio Web Simple es el más sencillo y básico que se puede encontrar, 
+          el cliente puede acceder al servicio web a través de la API Gateway, que conduce a las funciones lambda requeridas, 
+          a su vez enlazadas a eventos desencadenantes como acciones en la base de datos no relacional DynamoDB.
+        </p>
+        <img src="img/img_1.png" style="width:85%;height:85%;">
+        <form action="https://7oslmu0fue.execute-api.us-east-1.amazonaws.com/dev/swsimple" method="POST" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="name">Archivo: </label>
+            <input class="form-control-file" type="file" name="csv_file" id="csv_file" required="True">
+          </div>
+          <div class="form-group">
+            <label for="name">Seleccione el numero de registros: </label>
+            <select name="numreg" class="form-control" >
+              <option value="15000">15000 registros</option>
+              <option value="20000">20000 registros</option>
+              <option value="25000">25000 registros</option>
+            </select>
+          </div>
+          <input type="submit" value="CARGAR" class="btn btn-success">
+        </form>
+        <br>
+        <br>
+      </section>
+      <section class="uno">
+        <h2>Patrón fan in - fan out</h2>
+        <p class="parrafo">
+          El patrón Fan-out y Fan-in tiene como lema la frase “divide y vencerás”, 
+          ya que se debe dividir una tarea en subtareas, ejecutar varias funciones en paralelo y presentar el resultado que se obtiene. 
+        </p>
+        <img src="img/img_2.png" style="width:85%;height:85%;">
+        <form action="https://7oslmu0fue.execute-api.us-east-1.amazonaws.com/dev/patronfanout" method="POST" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="name">Archivo: </label>
+            <input class="form-control-file"  type="file" name="csv_file" id="csv_file" required="True">
+          </div>
+          <div class="form-group">
+            <label for="name">Seleccione el numero de registros: </label>
+            <select name="numreg" class="form-control">
+              <option value="15000">15000 registros</option>
+              <option value="20000">20000 registros</option>
+              <option value="25000">25000 registros</option>
+            </select>
+          </div>
+          <input type="submit" value="CARGAR" class="btn btn-success">
+        </form>
+        <br>
+        <br>
+      </section>
+      <section class="uno">
+        <h2>Patrón tuberias y filtros</h2>
+        <p class="parrafo">
+        El patrón de tuberías y filtros captura una gran cantidad de datos y realiza una distribución rápida a almacenes de datos o a variados servicios, 
+        tan rápido como estos se generen y cumpliendo con la gran cantidad de eventos. Posteriormente los servicios receptan estos datos, procesan la información, 
+        aplican la lógica de negocios necesaria a través de funciones lambda (análisis, transformación, reajuste) y despachen la información resultante a almacenes o 
+        bases de datos como DynamoDB.
+        </p>
+        <img src="img/img_3.png" style="width:85%;height:85%;">
+        <form action="https://7oslmu0fue.execute-api.us-east-1.amazonaws.com/dev/patrontuberiaenvio" method="POST" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="name">Archivo: </label>
+            <input class="form-control-file" type="file" name="csv_file" id="csv_file" required="True">
+          </div>
+          <div class="form-group">
+            <label for="name">Seleccione el numero de registros: </label>
+            <select name="numreg" class="form-control" >
+              <option value="15000">15000 registros</option>
+              <option value="20000">20000 registros</option>
+              <option value="25000">25000 registros</option>
+            </select>
+          </div>
+          <input type="submit" value="CARGAR" class="btn btn-success">
+        </form>
+        <br>
+        <br>
+      </section>
+      <section class="uno">
+        <h2>Patrón Gráfico</h2>
+        <p class="parrafo">
+          el patrón grafico se utiliza para usar un solo punto final o única función para procesar múltiples peticiones con diferentes datos, este patrón también es 
+          usado para que esta única función tenga control y pueda invocar a otras funciones específicas dependiendo de los datos de entrada, de este modo es opcional 
+          configurar el API Gateway y se puede llamar a las funciones de forma manual.
+        </p>
+        <img src="img/img_4.png" style="width:85%;height:85%;">
+        <form action="https://7oslmu0fue.execute-api.us-east-1.amazonaws.com/dev/patrongraficoBOTO" method="POST" enctype="multipart/form-data">
+          <input type="submit" value="Consultar" class="sls btn btn-success">
+        </form>
+        <br>
+        <br>
+      </section>
+    </section>
+</body>
+
+</html>
