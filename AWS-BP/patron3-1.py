@@ -29,6 +29,7 @@ def patrontuberiaenvio(event, context):
   result = [i.split(',') for i in lst]
   numreg= result[2]
   numreg= int(str(numreg[0]))
+  print("Numero de registros en archivo CSV: "+str(numreg))
   rowsFinal = rows[:numreg]
   archivo=""
   #creación de un archivo csv a partir de la lista del csv receptado

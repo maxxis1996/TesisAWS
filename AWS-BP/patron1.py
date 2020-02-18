@@ -30,6 +30,7 @@ def patronswsimple(event, context):
   numreg= result[2]
   numreg= str(numreg[0])
   numreg= int(numreg)
+  print("Número de registros insertados: "+str(numreg))
   #seleccionar la cantidad de registros para almacenar del archivo csv.
   rowsFinal = rows[:numreg]
   #Carga de registros a dynamodb con el proceso batch

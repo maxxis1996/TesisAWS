@@ -37,7 +37,7 @@ class Query(graphene.ObjectType):
     iD=kwargs.get('variable')
     print(iD)
     #Consulta que devuelve valor iguales a variable id
-    return list(User.scan(id='00c81dcc-8877-44da-8fee-6b9ebfbd4cf0'))
+    return list(User.scan(id__eq='00c81dcc-8877-44da-8fee-6b9ebfbd4cf0'))
   def resolve_usersCondition(self, *args, **kwargs):
     salario=kwargs.get('variable')
     #Consulta que devuelve valores mayores o iguales a variable salario
@@ -57,19 +57,24 @@ def patrongrafico(event, context):
   result = [i.split(',') for i in lst]
   numreg= result[2]
   numreg= int(str(numreg[0]))
-  #Obtener valor de variable para la condición.
-  r_text = re.search(r'Content-Disposition: form-data; name="salario"(.*)', data, re.DOTALL)
-  lst=[i for i in r_text.group(1).split('\n') if i != '']
-  result = [i.split(',') for i in lst]
-  salario= result[2]
+  
   variable=0
   variable2=''
   try:
     #Configurar variable de consulta de acuerdo a selección en formulario 
     if numreg==1:
+      #Obtener valor de variable para la condición.
+      r_text = re.search(r'Content-Disposition: form-data; name="salario"(.*)', data, re.DOTALL)
+      lst=[i for i in r_text.group(1).split('\n') if i != '']
+      result = [i.split(',') for i in lst]
+      salario= result[2]
       variable= str(salario[0])
       variable2='query1'
     elif numreg==2:
+      r_text = re.search(r'Content-Disposition: form-data; name="salario"(.*)', data, re.DOTALL)
+      lst=[i for i in r_text.group(1).split('\n') if i != '']
+      result = [i.split(',') for i in lst]
+      salario= result[2]
       variable= int(str(salario[0]))
       variable2='query2'
     elif numreg==3:

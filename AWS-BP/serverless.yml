@@ -45,7 +45,6 @@ plugins:
   - serverless-finch
 
 package:
-  individually: true
   exclude: 
     - env/**
 

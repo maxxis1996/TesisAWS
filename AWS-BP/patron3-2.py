@@ -32,6 +32,7 @@ def patrontuberia(event, context):
   df = df.astype(str)
   df = df.fillna("NA")
   values = df.T.to_dict().values()
+  print("Número de registros insertados: "+str(len(values)))
   #Carga de registros a dynamodb con el proceso batch
   with table.batch_writer() as batch:
     for row in values:

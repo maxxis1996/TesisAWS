@@ -2,7 +2,7 @@ service: aws-sbp-patrones
 provider:
   name: aws
   runtime: python3.8
-  memorySize: 1000
+  memorySize: 1504
   timeout: 900
   stage: dev
   region: us-east-1

@@ -8,6 +8,7 @@ import os
 import uuid
 import json
 import re
+import lambdawarmer
 
 lambda_client = boto3.client('lambda')
 dynamodb = boto3.resource('dynamodb')
@@ -47,18 +48,19 @@ def patronfanout(event, context):
       x = {"list" : listaParticionada,"count" : i}
       #Envio de información particionada a cada trabajador
       lambda_client.invoke(
-        FunctionName="aws-patrones-dev-trabajadores",
+        FunctionName="aws---patrones-dev-trabajadores",
         InvocationType='Event',
         Payload=json.dumps(x)
       )
-      print("Lambda invocation message:")
+      print("Lambda invocation")
     except Exception as ex:
       print(ex)
 
+@lambdawarmer.warmer(send_metric=True)
 def trabajadores(event, context):
   #Recepción de información particionada
   coun = int(event['count'])
-  print(coun)
+  print("Trabajador número: "+str(coun))
   rowsFinal = event['list']
   #Carga de registros a dynamodb con el proceso batch
   with table.batch_writer() as batch:

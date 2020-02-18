@@ -3,48 +3,57 @@
 
 <head>
   <meta charset="utf-8" />
-  <link rel="shortcut icon" href="img/logo.png" />
+  <link rel="shortcut icon" href="img/logo.png"/>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#ffffff">
   <link href="css/estilo.css" rel="stylesheet" type="text/css">
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
   <script src="https://sdk.amazonaws.com/js/aws-sdk-2.7.16.min.js"></script>
+  <script src="https://code.jquery.com/jquery-latest.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
   integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-  <title>Patrones Arquitectonicos de Serverless en AWS</title>
+  <title>Implementación de patrones arquitectónicos de Serverless en AWS</title>
 </head>
 
-<body>
-    <div class="navbar">
-        <a class="active" href="#"><i class="fa fa-fw fa-home"></i> Funciones en Amazon</a>
-        <a href="#"><i class="fa fa-fw fa-search"></i> Funciones en Google</a>
-        <a href="#"><i class="fa fa-fw fa-envelope"></i> Funciones en Ibm</a>
+<body> 
+  <header>
+    <a name="inicio"></a>
+    <div class="contenedor">
+      <div id="logo">
+        <img src="img/logo1.png" alt="">
+      </div>
+      <nav class="men">
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#section-1">Implementación con buenas prácticas</a></li>
+          <li><a href="#section-2">Implementación sin buenas prácticas</a></li>
+        </ul>  
+      </nav>
     </div>
+  </header>
+  <div class="logo">
+    <h2 style="text-align:center" class="titulo">Implementación de patrones arquitectónicos utilizando buenas prácticas en Serverless para AWS</h2>
+  </div>
 
   <div id="principal">
-    <header>
-      <div id="logo">
-        <h1 style="text-align:center" class="titulo">Patrones y buenas prácticas en Serverless para AWS</h1>
-      </div>
-    </header>
+    <a name="section-1"></a>
     <section id="categorias">
       <section class="uno">
-        <h2>Patron servicio web simple</h2>
+        <h2>Patrón Servicio Web Simple</h2>
         <p class="parrafo">
           El patrón de Servicio Web Simple es el más sencillo y básico que se puede encontrar, 
           el cliente puede acceder al servicio web a través de la API Gateway, que conduce a las funciones lambda requeridas, 
           a su vez enlazadas a eventos desencadenantes como acciones en la base de datos no relacional DynamoDB.
         </p>
-        <img src="img/img_1.png" style="width:85%;height:85%;">
+        <img src="img/img1.png" style="width:110%;height:110%;">
         <form action="https://7oslmu0fue.execute-api.us-east-1.amazonaws.com/dev/swsimple" method="POST" enctype="multipart/form-data">
           <div class="form-group">
             <label for="name">Archivo: </label>
             <input class="form-control-file" type="file" name="csv_file" id="csv_file" required="True">
           </div>
           <div class="form-group">
-            <label for="name">Seleccione el numero de registros: </label>
+            <label for="name">Seleccione el número de registros: </label>
             <select name="numreg" class="form-control" >
               <option value="15000">15000 registros</option>
               <option value="20000">20000 registros</option>
@@ -57,19 +66,19 @@
         <br>
       </section>
       <section class="uno">
-        <h2>Patrón fan in - fan out</h2>
+        <h2>Patrón Fan Out</h2>
         <p class="parrafo">
-          El patrón Fan-out y Fan-in tiene como lema la frase “divide y vencerás”, 
+          El patrón Fan Out tiene como lema la frase “divide y vencerás”, 
           ya que se debe dividir una tarea en subtareas, ejecutar varias funciones en paralelo y presentar el resultado que se obtiene. 
         </p>
-        <img src="img/img_2.png" style="width:85%;height:85%;">
+        <img src="img/img2.png" style="width:109%;height:109%;">
         <form action="https://7oslmu0fue.execute-api.us-east-1.amazonaws.com/dev/patronfanout" method="POST" enctype="multipart/form-data">
           <div class="form-group">
             <label for="name">Archivo: </label>
             <input class="form-control-file"  type="file" name="csv_file" id="csv_file" required="True">
           </div>
           <div class="form-group">
-            <label for="name">Seleccione el numero de registros: </label>
+            <label for="name">Seleccione el número de registros: </label>
             <select name="numreg" class="form-control">
               <option value="15000">15000 registros</option>
               <option value="20000">20000 registros</option>
@@ -81,15 +90,19 @@
         <br>
         <br>
       </section>
+      <div class="tres">
+        <input type="button" value="Patrón Gráfico" onclick="grafico();" class="btn btn-primary">
+        <input type="button" value="Boto" onclick="boto();"class="btn btn-warning">
+      </div>
       <section class="uno">
-        <h2>Patrón tuberias y filtros</h2>
-        <p class="parrafo">
-        El patrón de tuberías y filtros captura una gran cantidad de datos y realiza una distribución rápida a almacenes de datos o a variados servicios, 
+        <h2>Patrón Tuberías y Filtros</h2>
+        <p class="parrafo2">
+        El patrón de Tuberías y Filtros captura una gran cantidad de datos y realiza una distribución rápida a almacenes de datos o a variados servicios, 
         tan rápido como estos se generen y cumpliendo con la gran cantidad de eventos. Posteriormente los servicios receptan estos datos, procesan la información, 
         aplican la lógica de negocios necesaria a través de funciones lambda (análisis, transformación, reajuste) y despachen la información resultante a almacenes o 
         bases de datos como DynamoDB.
         </p>
-        <img src="img/img_3.png" style="width:85%;height:85%;">
+        <img src="img/img3.png" style="width:100%;height:100%;">
         <form action="https://7oslmu0fue.execute-api.us-east-1.amazonaws.com/dev/patrontuberiaenvio" method="POST" enctype="multipart/form-data">
           <div class="form-group">
             <label for="name">Archivo: </label>
@@ -108,21 +121,146 @@
         <br>
         <br>
       </section>
+
+      <div id="mostrar1">
+        <div class="ventana" id="vent">
+          <div id="cerrar"><a href="javascript:cerrar()"><img src="img/incorrecto.png"></a></div>
+          <h3>Tipos de consultas con patrón Gráfico</h3>
+          Consulta 1: Extracción del registro con número de atributos predeterminados por medio del id del registro ingresado en la interfaz de usuario. 
+          Entrada: id. Salida: id y discipline únicamente del registro consultado.
+          <br><br>
+          Consulta 2: Extracción de registros que sean mayores al salario ingresado en la interfaz de usuario. Entrada: salary. Salida: id, salary y sex únicamente de los registros que cumplan la condición.
+          <br><br>
+          Consulta 3: Consulta de todos los registros que se tenga en la base de datos. Salida: id, discipline, rank, salary, serie y sex.
+          <br><br>
+          Estas consultas se las realiza por medio del patrón Gráfico.
+        </div>
+        <section class="uno">
+          <h2>Patrón Gráfico</h2>
+          <p class="parrafo2">
+            El patrón Grafico se utiliza para usar un solo punto final o única función para procesar múltiples peticiones con diferentes datos, este patrón también es 
+            usado para que esta única función tenga control y pueda invocar a otras funciones específicas dependiendo de los datos de entrada, de este modo es opcional 
+            configurar el API Gateway y se puede llamar a las funciones de forma manual.
+          </p>
+          <img src="img/img4-1.png" style="width:100%;height:100%;">
+          <form action="https://ug7noyv4x1.execute-api.us-east-1.amazonaws.com/dev/patrongrafico" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+              <label for="name">Seleccione la consulta a realizar: </label>
+              <select name="numConsul" class="form-control" onchange='CheckColors(this.value);'>
+                <option value="1">Consulta 1</option>
+                <option value="2">Consulta 2</option>
+                <option value="3">Consulta 3</option>
+              </select>
+              <label for="name">Ingrese el valor de variabla de consulta: </label>
+              <input class="form-control" type="text" name="salario" id="salario" disabled required="True"/>
+            </div>
+            <input type="submit" value="CONSULTAR" class="btn btn-success">
+            <a href="javascript:abrir()"><input type="button" value="INFORMACIÓN" class="btn btn-secondary"></a>
+          </form>
+          <br>
+          <br>
+        </section>
+      </div>
+      <div id="mostrar2" style="display:none;">
+        <div class="ventana2" id="vent2">
+          <div id="cerrar2"><a href="javascript:cerrar()"><img src="img/incorrecto.png"></a></div>
+          <h3>Tipos de consultas con Boto3</h3>
+          Consulta 1: Extracción del registro con número de atributos predeterminados por medio del id del registro ingresado en la inferfaz de usuario. 
+          Entrada: id. Salida: id y discipline unicamente del registro consultado.
+          <br><br>
+          Consulta 2: Extracción de registros que sean mayores al salario ingresado en la interfaz de usuario. Entrada: salary. Salida: id, salary y sex. unicamente del registros que cumplan la condición.
+          <br><br>
+          Consulta 3: Consulta de todos los registros que se tenga en la base de datos. Salida:  id, discipline, rank, salary, serie y sex.
+          <br><br>
+          Estas consultas se las realiza por medio del sdk de AWS Boto3. 
+        </div>
+        <section class="uno">
+          <h2>Implementación Boto3</h2>
+          <p class="parrafo2">
+            La implementación utilizando Boto3 permite realizar consultas directas sobre Amazon DynamoDB, al ser el SDK de AWS para python administra 
+            los servicios y tiene un acceso de bajo nivel a variados servicios del proveedor AWS.
+
+          </p>
+          <img src="img/img4-2.png" style="width:100%;height:100%;">
+          <form action="https://ug7noyv4x1.execute-api.us-east-1.amazonaws.com/dev/implementacionBOTO" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+              <label for="name">Seleccione la consulta a realizar: </label>
+              <select name="numConsul" class="form-control" onchange='CheckColors(this.value);'>
+                <option value='1'>Consulta 1</option>
+                <option value='2'>Consulta 2</option>
+                <option value='3'>Consulta 3</option>
+              </select>
+              <label for="name">Ingrese el valor de variabla de consulta: </label>
+            <input class="form-control" type="text" name="salario" id="salario" disabled required="True"/>
+            </div>
+            <input type="submit" value="CONSULTAR" class="sls btn btn-success">
+            <a href="javascript:abrir()"><input type="button" value="INFORMACIÓN" class="btn btn-secondary"></a>
+          </form>
+          <br>
+          <br>  
+        </section>
+      </div>
+    </section>
+    <a name="section-2"></a>
+    <div id="logo2">
+      <h2 style="text-align:center" class="titulo">Implementación de patrones arquitectónicos sin utilizar buenas prácticas en Serverless para AWS</h2>
+    </div>
+    <section id="categorias2">
       <section class="uno">
-        <h2>Patrón Gráfico</h2>
-        <p class="parrafo">
-          el patrón grafico se utiliza para usar un solo punto final o única función para procesar múltiples peticiones con diferentes datos, este patrón también es 
-          usado para que esta única función tenga control y pueda invocar a otras funciones específicas dependiendo de los datos de entrada, de este modo es opcional 
-          configurar el API Gateway y se puede llamar a las funciones de forma manual.
+        <h2>Patrón Servicio Web Simple</h2>
+        <p class="parrafo2">
+          El patrón de Servicio Web Simple es el más sencillo y básico que se puede encontrar, 
+          el cliente puede acceder al servicio web a través de la API Gateway, que conduce a las funciones lambda requeridas, 
+          a su vez enlazadas a eventos desencadenantes como acciones en la base de datos no relacional DynamoDB.
         </p>
-        <img src="img/img_4.png" style="width:85%;height:85%;">
-        <form action="https://7oslmu0fue.execute-api.us-east-1.amazonaws.com/dev/patrongraficoBOTO" method="POST" enctype="multipart/form-data">
-          <input type="submit" value="Consultar" class="sls btn btn-success">
+        <img src="img/img1.png" style="width:100%;height:100%;">
+        <form action="https://0mzx0eduh4.execute-api.us-east-1.amazonaws.com/dev/swsimple" method="POST" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="name">Archivo: </label>
+            <input class="form-control-file" type="file" name="csv_file" id="csv_file" required="True">
+          </div>
+          <div class="form-group">
+            <label for="name">Seleccione el número de registros: </label>
+            <select name="numreg" class="form-control" >
+              <option value="15000">15000 registros</option>
+              <option value="20000">20000 registros</option>
+              <option value="25000">25000 registros</option>
+            </select>
+          </div>
+          <input type="submit" value="CARGAR" class="btn btn-success">
+        </form>
+        <br>
+        <br>
+      </section>
+      <section class="uno">
+        <h2>Patrón Tuberías y Filtros</h2>
+        <p class="parrafo2">
+        El patrón de Tuberías y Filtros captura una gran cantidad de datos y realiza una distribución rápida a almacenes de datos o a variados servicios, 
+        tan rápido como estos se generen y cumpliendo con la gran cantidad de eventos. Posteriormente los servicios receptan estos datos, procesan la información, 
+        aplican la lógica de negocios necesaria a través de funciones lambda (análisis, transformación, reajuste) y despachen la información resultante a almacenes o 
+        bases de datos como DynamoDB.
+        </p>
+        <img src="img/img3.png" style="width:100%;height:100%;">
+        <form action="https://0mzx0eduh4.execute-api.us-east-1.amazonaws.com/dev/patrontuberiaenvio" method="POST" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="name">Archivo: </label>
+            <input class="form-control-file" type="file" name="csv_file" id="csv_file" required="True">
+          </div>
+          <div class="form-group">
+            <label for="name">Seleccione el número de registros: </label>
+            <select name="numreg" class="form-control" >
+              <option value="15000">15000 registros</option>
+              <option value="20000">20000 registros</option>
+              <option value="25000">25000 registros</option>
+            </select>
+          </div>
+          <input type="submit" value="CARGAR" class="btn btn-success">
         </form>
         <br>
         <br>
       </section>
     </section>
+    <script type="text/javascript" src="js/consulta.js"></script> 
+    <script src="js/main.js"></script>
 </body>
-
 </html>

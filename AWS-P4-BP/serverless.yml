@@ -42,12 +42,12 @@ functions:
           method: post
           cors: true
   
-  patrongraficoB:
-    handler: patron4B.patrongraficoBOTO
+  implementacionBoto:
+    handler: implementacionBoto.BOTO
     environment:
       DYNAMO_TABLE_NAME: ${self:custom.dynamoDBTableName}
     events:
       - http:
-          path: patrongraficoBOTO
+          path: implementacionBOTO
           method: post
           cors: true

@@ -1,27 +1,123 @@
 #principal{
-	width: 900px;
+	width: 70%;
 	height: auto; overflow: hidden;
 	border: 0px solid #000;
 	margin: auto;
 
 }
 
-header{
-	width: 900px;
-	height: 100px;
-	border: 0px solid #000;
+.contenedor{
+	width: 70%;
+	margin: auto;
 }
 
-#logo{
-	width: 99%;
+	.contenedor p{
+		margin-bottom: 40px;
+	}
+
+
+header nav{
+	background: #3498db;
+}
+
+	header nav ul{
+		list-style: none;
+		overflow: hidden;
+	}
+
+		header nav ul li{
+			float: left;
+		}
+
+			header nav ul li a{
+				display: block;
+				padding: 20px;
+				color: #fff;
+				text-decoration: none;
+			}
+
+			header nav ul li a:hover{
+				background: #2980b9;
+			}
+
+.men-fixed{
+	height: 50px;
+	position: fixed;
+	z-index: 1000;
+	top: 0;
+	left: 0;
+	width: 100%;
+	box-shadow: 0px 4px 3px rgba(0,0,0,.5);
+}
+
+.men-fixed ul li a{
+	padding: 15px 20px;
+}
+
+.logo{
+	width: 70%;
 	height: 100px;
 	border: 0px solid #000;
-	float: left; font-family: sans-serif;
+	margin: auto;
 }
+
+#logo2{
+	background:#F5F7F7;
+	height: 100px;
+}
+
+.ventana{
+	background:  #1d5b9e;
+	width: 50%;
+	height: 50%;
+	color: white;
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: center;
+	font-size: 18px;
+	padding: 33px;
+	min-width: 250px;
+	border-radius: 22px;
+	position: fixed;
+	left: 30%;
+	top: 30%;
+	display: none;
+	margin: auto;
+}
+
+#cerrar{
+	position: absolute;
+	right: 3px;
+	top: 1px;
+}
+
+.ventana2{
+	background:  #1d5b9e;
+	width: 50%;
+	height: 50%;
+	color: white;
+	font-family: Arial, Helvetica, sans-serif;
+	text-align: center;
+	font-size: 18px;
+	padding: 33px;
+	min-width: 250px;
+	border-radius: 22px;
+	position: fixed;
+	left: 30%;
+	top: 30%;
+	display: none;
+	margin: auto;
+}
+
+#cerrar2{
+	position: absolute;
+	right: 3px;
+	top: 1px;
+}
+
 
 .titulo{
 	margin-top: 25px;
-	font-size: 30px;
+	font-size: 35px;
 }
 
 .sub-titulo{
@@ -65,32 +161,50 @@ header{
 }
 
 #categorias{
-	width: 900px;
+	width: 100%;
 	height: auto; overflow: hidden;
 	border: 0px solid;
 	margin-top: 15px;
 }
 
-.uno{
-	width: 50%;
+#categorias2{
+	width: 100%;
 	height: auto; overflow: hidden;
+	border: 0px solid;
+	margin-top: 15px;
+	background:#F5F7F7;
+}
+
+.uno{
+	width: 48.5%;
 	float: left;
 	padding: 5px;
 	text-align: center;
 	color: #4682b4;
+	margin-left: 1em;
 }
 .dos{
 	width: 100%;
-	height: auto; overflow: hidden;
 	float: left;
 	padding: 5px;
 	text-align: center;
 	color: #4682b4;
 }
 
+.tres{
+	width: 100%;
+	text-align: center;
+}
 .parrafo{
 	color: #707070;
 	text-align: justify;
+	height: 80px;
+}
+
+.parrafo2{
+	color: #707070;
+	text-align: justify;
+	height: 124px;
 }
 .dos{
 	margin-left: 12px;
