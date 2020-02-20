@@ -23,24 +23,28 @@
       <div id="logo">
         <img src="img/logo1.png" alt="">
       </div>
-      <nav class="men">
+      <input type="checkbox" id="btn-menu">
+      <input type="checkbox" id="btn-menu2">
+      <label for="btn-menu" class="icon"><img src="img/iconmenu.png" alt=""></label>
+      <nav class="men" >
         <ul>
-          <li><a href="#inicio">Inicio</a></li>
-          <li><a href="#section-1">Implementación con buenas prácticas</a></li>
-          <li><a href="#section-2">Implementación sin buenas prácticas</a></li>
+          <li><a href="#inicio" for="btn-menu2">Inicio</a></li>
+          <li><a href="#section-1" for="btn-menu2">Implementación con buenas prácticas</a></li>
+          <li><a href="#section-2" for="btn-menu2">Implementación sin buenas prácticas</a></li>
+          <li><a href="archivo/Archivo.csv" download="ArchivoDePrueba.csv">Descargar archivo CSV</a></li>
         </ul>  
       </nav>
     </div>
   </header>
   <div class="logo">
-    <h2 style="text-align:center" class="titulo">Implementación de patrones arquitectónicos utilizando buenas prácticas en Serverless para AWS</h2>
+    <h1 class="titulo">Implementación de patrones arquitectónicos utilizando buenas prácticas en Serverless para AWS</h1>
   </div>
 
   <div id="principal">
     <a name="section-1"></a>
     <section id="categorias">
       <section class="uno">
-        <h2>Patrón Servicio Web Simple</h2>
+        <h2 class="sub-titulo">Patrón Servicio Web Simple</h2>
         <p class="parrafo">
           El patrón de Servicio Web Simple es el más sencillo y básico que se puede encontrar, 
           el cliente puede acceder al servicio web a través de la API Gateway, que conduce a las funciones lambda requeridas, 
@@ -66,7 +70,7 @@
         <br>
       </section>
       <section class="uno">
-        <h2>Patrón Fan Out</h2>
+        <h2 class="sub-titulo">Patrón Fan Out</h2>
         <p class="parrafo">
           El patrón Fan Out tiene como lema la frase “divide y vencerás”, 
           ya que se debe dividir una tarea en subtareas, ejecutar varias funciones en paralelo y presentar el resultado que se obtiene. 
@@ -90,12 +94,12 @@
         <br>
         <br>
       </section>
-      <div class="tres">
+      <div class="dos">
         <input type="button" value="Patrón Gráfico" onclick="grafico();" class="btn btn-primary">
         <input type="button" value="Boto" onclick="boto();"class="btn btn-warning">
       </div>
       <section class="uno">
-        <h2>Patrón Tuberías y Filtros</h2>
+        <h2 class="sub-titulo">Patrón Tuberías y Filtros</h2>
         <p class="parrafo2">
         El patrón de Tuberías y Filtros captura una gran cantidad de datos y realiza una distribución rápida a almacenes de datos o a variados servicios, 
         tan rápido como estos se generen y cumpliendo con la gran cantidad de eventos. Posteriormente los servicios receptan estos datos, procesan la información, 
@@ -136,7 +140,7 @@
           Estas consultas se las realiza por medio del patrón Gráfico.
         </div>
         <section class="uno">
-          <h2>Patrón Gráfico</h2>
+          <h2 class="sub-titulo">Patrón Gráfico</h2>
           <p class="parrafo2">
             El patrón Grafico se utiliza para usar un solo punto final o única función para procesar múltiples peticiones con diferentes datos, este patrón también es 
             usado para que esta única función tenga control y pueda invocar a otras funciones específicas dependiendo de los datos de entrada, de este modo es opcional 
@@ -151,8 +155,8 @@
                 <option value="2">Consulta 2</option>
                 <option value="3">Consulta 3</option>
               </select>
-              <label for="name">Ingrese el valor de variabla de consulta: </label>
-              <input class="form-control" type="text" name="salario" id="salario" disabled required="True"/>
+              <label for="name">Ingrese el valor de variable de consulta: </label>
+              <input class="form-control" type="text" name="salario" id="salario" required="True"/>
             </div>
             <input type="submit" value="CONSULTAR" class="btn btn-success">
             <a href="javascript:abrir()"><input type="button" value="INFORMACIÓN" class="btn btn-secondary"></a>
@@ -175,7 +179,7 @@
           Estas consultas se las realiza por medio del sdk de AWS Boto3. 
         </div>
         <section class="uno">
-          <h2>Implementación Boto3</h2>
+          <h2 class="sub-titulo">Implementación Boto3</h2>
           <p class="parrafo2">
             La implementación utilizando Boto3 permite realizar consultas directas sobre Amazon DynamoDB, al ser el SDK de AWS para python administra 
             los servicios y tiene un acceso de bajo nivel a variados servicios del proveedor AWS.
@@ -190,8 +194,8 @@
                 <option value='2'>Consulta 2</option>
                 <option value='3'>Consulta 3</option>
               </select>
-              <label for="name">Ingrese el valor de variabla de consulta: </label>
-            <input class="form-control" type="text" name="salario" id="salario" disabled required="True"/>
+              <label for="name">Ingrese el valor de variable de consulta: </label>
+            <input class="form-control" type="text" name="salario" id="salario2" required="True"/>
             </div>
             <input type="submit" value="CONSULTAR" class="sls btn btn-success">
             <a href="javascript:abrir()"><input type="button" value="INFORMACIÓN" class="btn btn-secondary"></a>
@@ -202,12 +206,13 @@
       </div>
     </section>
     <a name="section-2"></a>
-    <div id="logo2">
-      <h2 style="text-align:center" class="titulo">Implementación de patrones arquitectónicos sin utilizar buenas prácticas en Serverless para AWS</h2>
-    </div>
+    
     <section id="categorias2">
+      <div id="logo2">
+        <h1 class="titulo">Implementación de patrones arquitectónicos sin utilizar buenas prácticas en Serverless para AWS</h1>
+      </div>
       <section class="uno">
-        <h2>Patrón Servicio Web Simple</h2>
+        <h2 class="sub-titulo">Patrón Servicio Web Simple</h2>
         <p class="parrafo2">
           El patrón de Servicio Web Simple es el más sencillo y básico que se puede encontrar, 
           el cliente puede acceder al servicio web a través de la API Gateway, que conduce a las funciones lambda requeridas, 
@@ -233,7 +238,7 @@
         <br>
       </section>
       <section class="uno">
-        <h2>Patrón Tuberías y Filtros</h2>
+        <h2 class="sub-titulo">Patrón Tuberías y Filtros</h2>
         <p class="parrafo2">
         El patrón de Tuberías y Filtros captura una gran cantidad de datos y realiza una distribución rápida a almacenes de datos o a variados servicios, 
         tan rápido como estos se generen y cumpliendo con la gran cantidad de eventos. Posteriormente los servicios receptan estos datos, procesan la información, 

@@ -1,20 +1,16 @@
 function CheckColors(val){
-  var element=document.getElementById('numConsul');
   var element2=document.getElementById('salario');
-  alert(val)
-  if(val==1){
-    element.style.display='block';
-    element2.disabled = true;
-    
+  var element3=document.getElementById('salario2');
+  if(val=="1"){
+    element2.disabled = false;
+    element3.disabled = false;
   }else if(val=="2"){
-    element.style.display='block';
-    element2.disabled = true;
+    element2.disabled = false;
+    element3.disabled = false;
   }else if(val=="3"){
-    element.style.display='block';
-  }else{
-    alert("holi")
+    element2.disabled = true;
+    element3.disabled = true;
   }
-  alert("holi")
 }
 
 

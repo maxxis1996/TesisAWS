@@ -23,10 +23,13 @@ header nav{
 	header nav ul{
 		list-style: none;
 		overflow: hidden;
+		display: flex;
 	}
 
 		header nav ul li{
-			float: left;
+			display: block;
+			flex-grow: 1;
+			border-right: 1px solid #fff;
 		}
 
 			header nav ul li a{
@@ -40,6 +43,25 @@ header nav{
 				background: #2980b9;
 			}
 
+#btn-menu {
+	display: none;
+}
+#btn-menu2 {
+	display: none;
+}
+
+header label{
+	display: none;
+	width: 35px;
+	height: 35px;
+	border-right: 1px solid #fff;
+}
+
+header label:hover {
+	cursor: pointer;
+	background: rgb(0, 0, 0,.3);
+}
+			
 .men-fixed{
 	height: 50px;
 	position: fixed;
@@ -118,11 +140,12 @@ header nav{
 .titulo{
 	margin-top: 25px;
 	font-size: 35px;
+	font-weight: bold;
+	text-align:center;
 }
 
 .sub-titulo{
-	font-size: 14px;
-	margin-top: -20px;
+	font-size: 28px;
 }
 
 .menu{
@@ -132,32 +155,6 @@ header nav{
 	float: right;
 	margin-top: 40px;
 	background: #006699;
-}
-
-.menu ul{}
-
-.menu ul li{
-	list-style: none;
-	float: left;
-}
-
-.menu ul li a{
-	text-decoration: none;
-	padding: 10px 15px;
-	border: 0px solid #ccc;
-	color: #fff; 
-}
-
-.menu ul li a:hover{
-	background: #fff;
-	color: #006699;
-	transition: background 1s, color 1s;
-}
-
-#slide{
-	margin-top: -5px;
-	width: 900px;
-	height: 250px;
 }
 
 #categorias{
@@ -180,21 +177,14 @@ header nav{
 	float: left;
 	padding: 5px;
 	text-align: center;
-	color: #4682b4;
 	margin-left: 1em;
 }
+
 .dos{
 	width: 100%;
-	float: left;
-	padding: 5px;
 	text-align: center;
-	color: #4682b4;
 }
 
-.tres{
-	width: 100%;
-	text-align: center;
-}
 .parrafo{
 	color: #707070;
 	text-align: justify;
@@ -206,53 +196,6 @@ header nav{
 	text-align: justify;
 	height: 124px;
 }
-.dos{
-	margin-left: 12px;
-	margin-right: 12px;
-}
-
-.leer-mas{
-	text-decoration: none;
-	border: 1px solid #006699;
-	padding: 10px 20px 10px 20px;
-	margin-bottom: 10px;
-}
-
-.leer-mas:hover{
-	background: #006699;
-	color: #fff;
-	transition: background 1s, color 1s;
-}
-
-
-#info{
-	width: 900px;
-	height: auto; overflow: hidden;
-	border: 0px solid #c0c0c0;
-	margin-top: 10px; color: 
-}
-
-#izq{
-	width: 585px;
-	height: auto; overflow: hidden;
-	border: 1px solid #ccc;
-	float: left;
-	padding: 5px; color: #4682b4;
-}
-
-.img{
-	margin-right: 7px;
-	margin-bottom: 7px;
-}
-
-
-#der{
-	width: 290px;
-	height: 300px;
-	border: 1px solid #ccc;
-	float: right;
-	color: 
-}
 
 footer{
 	width: 900px;
@@ -263,45 +206,329 @@ footer{
 #footer p{
 	width: 500px;
 }
-
-/*------------contacto------------------------*/
-#formulario{
-	width: 432px;
-	height: auto;
-	overflow: hidden;
-	border: 1px solid #ccc;
-	padding: 5px;
-	float: left
+h2{
+	color: #4682b4;
 }
-
-#mapa{
-	width: 432px;
-	height: auto;
-	overflow: hidden;
-	border: 1px solid #ccc;
-	padding: 5px;
-	float: right;
+/*Resoluciones menores de 640 píxeles de ancho.*/
+@media (max-width:640px) {
+	#principal{
+		width: 100%;
+		height: auto; overflow: hidden;
+		border: 0px solid #000;
+		margin: auto;
+	}
+	.contenedor{
+		width: 100%;
+		margin: auto;
+	}
+	#logo{
+		display: none;
+	}
+	.icon{
+		width: 100%;
+		background: #3498db;
+		margin-right: solid 1px #fff;
+	}
+	.men{
+		width: 75%;
+		position: fixed;
+		margin-left: -75%;
+		transition: all 0.7s;
+		font-size: 12px;
+	}
+	.men ul {
+		flex-direction: column;
+	}
+	.men li {
+		border-top: 1px solid #fff;
+	}
+	#btn-menu:checked ~ .men {
+		margin: 0; 
+	}
+	#btn-menu2:checked ~ .men {
+		margin: 0; 
+	}
+	header label{
+		display: block;
+	}
+	.titulo{
+		font-size: 15px;
+		font-weight: bold;
+	}
+	.sub-titulo{
+		font-size: 12px;
+		font-weight: bold;
+	}
+	
+	.logo{
+		width: 100%;
+		height: 10%;
+	}
+	.parrafo{
+		color: #707070;
+		text-align: justify;
+		height: 5%;
+		font-size: 10px;
+		height: 130px;
+	}
+	.parrafo2{
+		color: #707070;
+		text-align: justify;
+		height: 220px;
+		font-size: 10px;
+	}
+	.uno{
+		width: 45%;
+		float: left;
+		padding: 2px;
+		text-align: center;
+		margin-left: 1em;
+	}
+	.ventana{
+		background:  #1d5b9e;
+		width: 80%;
+		height: 80%;
+		color: white;
+		font-family: Arial, Helvetica, sans-serif;
+		text-align: center;
+		font-size: 12px;
+		padding: 33px;
+		min-width: 250px;
+		border-radius: 22px;
+		position: fixed;
+		left: 10%;
+		top: 10%;
+		display: none;
+		margin: auto;
+	}
+	.ventana2{
+		background:  #1d5b9e;
+		width: 80%;
+		height: 80%;
+		color: white;
+		font-family: Arial, Helvetica, sans-serif;
+		text-align: center;
+		font-size: 12px;
+		padding: 33px;
+		min-width: 250px;
+		border-radius: 22px;
+		position: fixed;
+		left: 10%;
+		top: 10%;
+		display: none;
+		margin: auto;
+	}
+	.ventana h3{
+		font-size: 20px;
+	}
+	.ventana2 h3{
+		font-size: 20px;
+	}
+	.form-group{
+		font-size: 10px;
+	}
+	.form-control{
+		font-size: 10px;
+	}
+	.dos{
+		width: 70%;
+		text-align: right;
+	}
+	.men-fixed{
+		height: 35px;
+		background: #3498db;
+		position: fixed;
+		z-index: 1000;
+		top: 0;
+		left: 0;
+		width: 100%;
+		box-shadow: 0px 4px 3px rgba(0,0,0,.5);
+	}
+	
+	.men-fixed ul li a{
+		padding: 15px 20px;
+	}
+	
 }
-
-input[type="text"]{
-	border: 1px solid #c1c1c1; padding: 6px;
-	width: 97%;
+/*Resoluciones menores de 1024 píxeles de ancho pero mayores que 640 píxeles.*/
+@media (max-width:1024px) and (min-width:640px) {
+	#principal{
+		width: 80%;
+		height: auto; overflow: hidden;
+		border: 0px solid #000;
+		margin: auto;
+	}
+	.contenedor{
+		width: 80%;
+		margin: auto;
+	}
+	header nav{
+		background: #3498db;
+		font-size: 15px;
+	}
+	.men-fixed{
+		height: 60px;
+		background: #3498db;
+		position: fixed;
+		z-index: 1000;
+		top: 0;
+		left: 0;
+		width: 100%;
+		box-shadow: 0px 4px 3px rgba(0,0,0,.5);
+	}
+	
+	.men-fixed ul li a{
+		padding: 15px 20px;
+	}
+	.titulo{
+		font-size: 18px;
+		font-weight: bold;
+	}
+	.sub-titulo{
+		font-size: 13px;
+		font-weight: bold;
+	}
+	.logo{
+		width: 80%;
+		height: 10%;
+	}
+	.parrafo{
+		color: #707070;
+		text-align: justify;
+		font-size: 10px;
+		height: 95px;
+	}
+	.parrafo2{
+		color: #707070;
+		text-align: justify;
+		height: 155px;
+		font-size: 10px;
+	}
+	.uno{
+		width: 46%;
+		float: left;
+		padding: 2px;
+		text-align: center;
+		margin-left: 1em;
+	}
+	#logo2{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 80px;
+	}
+	.ventana{
+		background:  #1d5b9e;
+		width: 60%;
+		height: 60%;
+		color: white;
+		font-family: Arial, Helvetica, sans-serif;
+		text-align: center;
+		font-size: 12.7px;
+		padding: 33px;
+		min-width: 250px;
+		border-radius: 22px;
+		position: fixed;
+		left: 20%;
+		top: 20%;
+		display: none;
+		margin: auto;
+	}
+	.ventana2{
+		background:  #1d5b9e;
+		width: 60%;
+		height: 60%;
+		color: white;
+		font-family: Arial, Helvetica, sans-serif;
+		text-align: center;
+		font-size: 12.7px;
+		padding: 33px;
+		min-width: 250px;
+		border-radius: 22px;
+		position: fixed;
+		left: 20%;
+		top: 20%;
+		display: none;
+		margin: auto;
+	}
+	.ventana h3{
+		font-size: 18px;
+	}
+	.ventana2 h3{
+		font-size: 18px;
+	}
+	.form-group{
+		font-size: 13px;
+	}
+	.form-control{
+		font-size: 13px;
+	}
+	.dos{
+		width: 70%;
+		text-align: right;
+	}
 }
-
-textarea{
-	border: 1px solid #c1c1c1; padding: 6px;
-	width: 97%;
-}
-
-.enviar{
-	padding: 10px 20px;
-	background: #006699;
-	color: #fdfdfd;
-	font-size: 16px;
-}
-
-#form{}
-
-#datos{
-	margin-top: 30px;
+/*Resoluciones mayores de 1024 píxeles.*/
+@media (min-width:1024px) {
+	.titulo{
+		font-size: 25px;
+		font-weight: bold;
+	}
+	.sub-titulo{
+		font-size: 20px;
+		font-weight: bold;
+	}
+	.parrafo{
+		color: #707070;
+		text-align: justify;
+		font-size: 16px;
+		height: 145px;
+	}
+	.parrafo2{
+		color: #707070;
+		text-align: justify;
+		height: 240px;
+		font-size: 16px;
+	}
+	.uno{
+		width: 47%;
+		float: left;
+		padding: 2px;
+		text-align: center;
+		margin-left: 1em;
+	}
+	.ventana{
+		background:  #1d5b9e;
+		width: 60%;
+		height: 60%;
+		color: white;
+		font-family: Arial, Helvetica, sans-serif;
+		text-align: center;
+		font-size: 18px;
+		padding: 33px;
+		min-width: 250px;
+		border-radius: 22px;
+		position: fixed;
+		left: 25%;
+		top: 25%;
+		display: none;
+		margin: auto;
+	}
+	.ventana2{
+		background:  #1d5b9e;
+		width: 60%;
+		height: 60%;
+		color: white;
+		font-family: Arial, Helvetica, sans-serif;
+		text-align: center;
+		font-size: 18px;
+		padding: 33px;
+		min-width: 250px;
+		border-radius: 22px;
+		position: fixed;
+		left: 25%;
+		top: 25%;
+		display: none;
+		margin: auto;
+	}
 }
