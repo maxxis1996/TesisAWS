@@ -12,7 +12,7 @@ lambda-warmer-py==0.6.0
 lazy-object-proxy==1.4.3
 mccabe==0.6.1
 promise==2.1
-pylint==2.4.4
+pylint==4.0.9
 pynamodb==2.2.0
 python-dateutil==2.8.1
 Rx==1.6.1
